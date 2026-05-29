@@ -1,0 +1,429 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Local Community Event Portal</title>
+<link rel="stylesheet" href="styles.css">
+<script src="main.js" defer></script>
+<!-- <style>
+
+    
+body{
+    font-family: Arial, sans-serif;
+    margin:20px;
+}
+
+nav{
+    background-color:#f2f2f2;
+    padding:10px;
+}
+
+nav a{
+    margin-right:15px;
+    text-decoration:none;
+}
+
+#welcomeBanner{
+    background-color:blue;
+    color:white;
+    padding:15px;
+    margin-top:10px;
+}
+
+.highlight{
+    background-color:yellow;
+    padding:5px;
+}
+
+.eventImage{
+    border:3px solid black;
+    width:200px;
+    height:150px;
+}
+
+form{
+    border:1px solid gray;
+    padding:20px;
+    width:450px;
+    margin-bottom:20px;
+}
+
+footer{
+    background:#f2f2f2;
+    padding:10px;
+    margin-top:20px;
+}
+</style> -->
+
+<!-- <script>
+
+function showMessage(){
+    document.getElementById("result").value =
+    "Registration Successful!";
+}
+
+function validatePhone(){
+    let phone=document.getElementById("phone").value;
+
+    if(phone.length!=10){
+        alert("Phone number must contain 10 digits");
+    }
+}
+
+function showFee(fee){
+    document.getElementById("fee").innerHTML =
+    "Event Fee: ₹" + fee;
+}
+
+function confirmRegistration(){
+    alert("Feedback Submitted Successfully");
+}
+
+function enlargeImage(){
+    document.getElementById("galleryImage")
+    .style.width="400px";
+}
+
+function countChars(text){
+    document.getElementById("charCount").innerHTML =
+    text.value.length;
+}
+
+function videoReady(){
+    document.getElementById("videoMsg").innerHTML =
+    "Video ready to play";
+}
+
+function savePreference(){
+    let event =
+    document.getElementById("eventType").value;
+
+    localStorage.setItem("preferredEvent",event);
+}
+
+window.onload=function(){
+
+    let saved=
+    localStorage.getItem("preferredEvent");
+
+    if(saved){
+        document.getElementById("eventType").value=saved;
+    }
+}
+
+function clearData(){
+    localStorage.clear();
+    sessionStorage.clear();
+    alert("Preferences Cleared");
+}
+
+function findLocation(){
+
+navigator.geolocation.getCurrentPosition(
+
+function(position){
+
+document.getElementById("location").innerHTML=
+
+"Latitude: "+position.coords.latitude+
+"<br>Longitude: "+position.coords.longitude;
+
+},
+
+function(error){
+
+switch(error.code){
+
+case error.PERMISSION_DENIED:
+alert("Permission Denied");
+break;
+
+case error.TIMEOUT:
+alert("Location Request Timed Out");
+break;
+
+default:
+alert("Location Error");
+
+}
+
+},
+
+{
+enableHighAccuracy:true,
+timeout:5000
+}
+
+);
+
+}
+
+window.onbeforeunload=function(){
+return "Are you sure you want to leave?";
+}
+
+console.log("Portal Loaded");
+
+</script> -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+$("#registerBtn").click(function(){
+
+$(".eventCard").fadeOut(1000).fadeIn(1000);
+
+});
+</script>
+</head>
+
+<body>
+
+<!-- Navigation -->
+
+<nav>
+<a href="#home">Home</a>
+<a href="#events">Events</a>
+<a href="#contact">Contact</a>
+<a href="help.html" target="_blank">Help</a>
+</nav>
+
+<!-- Main -->
+
+<section id="home">
+
+<h2>Home</h2>
+
+<div id="welcomeBanner">
+Welcome Resident!
+</div>
+
+
+
+<p class="highlight">
+Early registration closes soon.
+</p>
+
+</section>
+
+<hr>
+
+<section id="events">
+
+<h2>Event Registration</h2>
+
+<form onsubmit="showMessage(); return false;">
+
+<input type="text"
+placeholder="Enter Name"
+required
+autofocus>
+
+<br><br>
+
+<input type="email"
+placeholder="Enter Email"
+required>
+
+<br><br>
+
+<input type="date"
+required>
+
+<br><br>
+
+<select required>
+<option value="">Select Event</option>
+<option>Music</option>
+<option>Sports</option>
+<option>Food</option>
+</select>
+
+<br><br>
+
+<textarea placeholder="Message"></textarea>
+
+<br><br>
+
+<button type="submit">
+Register
+</button>
+
+<br><br>
+
+<output id="result"></output>
+
+</form>
+
+<h2>Event Feedback</h2>
+
+Phone Number:
+
+<input type="text"
+id="phone"
+onblur="validatePhone()">
+
+<br><br>
+
+<select id="eventType"
+onchange="showFee(this.value); savePreference();">
+
+<option value="">Select Event</option>
+<option value="100">Music</option>
+<option value="200">Sports</option>
+<option value="300">Food</option>
+
+</select>
+
+<p id="fee"></p>
+
+<textarea
+rows="5"
+cols="40"
+placeholder="Enter Feedback"
+onkeyup="countChars(this)">
+</textarea>
+
+<p>
+Characters:
+<span id="charCount">0</span>
+</p>
+
+<button onclick="confirmRegistration()">
+Submit Feedback
+</button>
+<h2>Past Event Gallery</h2>
+
+<table border="1">
+
+<tr>
+
+<td>
+<img
+src="https://th.bing.com/th/id/OIP.ihTNLcIpWe1uzLxbtenrwAHaEO?w=186&h=106&c=7&r=0&o=7&dpr=1.6&pid=1.7&rm=3"
+alt="Music Event"
+title="Music Event"
+class="eventImage">
+<p>Music Festival</p>
+</td>
+
+<td>
+<img
+src="https://th.bing.com/th/id/OIP.t-J8afF680kpRzFiNB7kJQHaE8?w=240&h=180&c=7&r=0&o=7&dpr=1.6&pid=1.7&rm=3"
+alt="Food Event"
+title="Food Event"
+class="eventImage">
+<p>Food Fair</p>
+</td>
+
+<td>
+<img
+src="https://tse4.mm.bing.net/th/id/OIP.H7W_a5V12PdyuRUS7WT--AHaE0?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
+alt="Sports Event"
+title="Sports Event"
+class="eventImage">
+<p>Sports Meet</p>
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<img
+src="https://th.bing.com/th/id/OIP.mHr0svtJb4C2_JEP9Ok_bAHaEJ?w=286&h=180&c=7&r=0&o=7&dpr=1.6&pid=1.7&rm=3"
+alt="Dance Event"
+title="Dance Event"
+class="eventImage">
+<p>Dance Show</p>
+</td>
+
+<td>
+<img
+src="https://th.bing.com/th/id/OIP.2IcgNTVJS9bZkqn2PE_EGQHaEk?w=303&h=187&c=7&r=0&o=7&dpr=1.6&pid=1.7&rm=3"
+alt="Art Event"
+title="Art Event"
+class="eventImage">
+<p>Art Exhibition</p>
+</td>
+
+<td>
+<img
+src="https://www.thesun.ie/wp-content/uploads/sites/3/2023/04/female-volunteers-collecting-food-donation-779716191.jpg?strip=all&quality=100&w=1920&h=1080&crop=1"
+alt="Charity Event"
+title="Charity Event"
+class="eventImage">
+<p>Charity Drive</p>
+</td>
+
+</tr>
+
+</table>
+
+
+</section>
+
+<hr>
+
+<section>
+
+<h2>Promo Video</h2>
+
+<video width="400"
+controls
+oncanplay="videoReady()">
+
+<source src="local.mp4" type="video/mp4">
+
+</video>
+
+<p id="videoMsg"></p>
+
+</section>
+
+<hr>
+
+<section>
+
+<h2>Storage Demo</h2>
+
+<button onclick="clearData()">
+Clear Preferences
+</button>
+
+</section>
+
+<hr>
+
+<section>
+
+<h2>Find Nearby Events</h2>
+
+<button onclick="findLocation()">
+Find Nearby Events
+</button>
+
+<p id="location"></p>
+
+</section>
+
+<hr>
+
+<section id="contact">
+
+<h2>Contact</h2>
+
+<p>Email: community@events.com</p>
+
+<p>Phone: +91 9876543210</p>
+
+</section>
+
+<!-- Footer -->
+
+<footer>
+<p>© 2026 Local Community Event Portal</p>
+</footer>
+
+</body>
+</html>
