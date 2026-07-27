@@ -1,0 +1,23 @@
+body {
+  margin: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  color: green;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+span {
+  margin-left: 20px;
+  font-weight: bold;
+}
