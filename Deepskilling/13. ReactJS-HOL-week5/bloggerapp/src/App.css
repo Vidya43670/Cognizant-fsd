@@ -1,0 +1,29 @@
+.container{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    margin-top:40px;
+}
+
+.column{
+    width:250px;
+    padding:20px;
+    border-right:4px solid green;
+}
+
+.column:last-child{
+    border-right:none;
+}
+
+h2{
+    font-size:35px;
+    font-weight:bold;
+}
+
+h3{
+    margin-top:20px;
+}
+
+p{
+    font-size:18px;
+}
